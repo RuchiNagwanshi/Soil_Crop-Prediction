@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Prediction</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;&display=swap');
+    
+        *{
+   margin: 0;
+   padding: 0;
+   box-sizing: border-box;
+   list-style: none;
+   text-decoration: none;
+   font-family: "Poppins",sans-serif;
+}
+body{
+  background-image:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/static/images/mainbgimage.png);
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  height: 100vh;
+}
+
+
+header
+{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 110px;
+    padding: 0 5%;
+    /* color: #000000; */
+    /* background: rgb(64, 62, 62); */
+    font-size: 18px;
+}
+
+header .logo
+{
+    color: #ffffff;
+    font-size: 2.5rem;
+    text-decoration: uppercase;
+    font-weight: 700;
+    margin-right: auto;
+}
+
+header nav
+{
+    display: flex;
+    align-items: center;
+}
+header nav .menu
+{
+    display: flex;
+    align-items: center;
+}
+
+
+header nav .menu li a{
+    cursor:pointer;
+      position:relative;
+      padding:10px 20px;
+      /* background-image:linear-gradient(rgba(0  , 0, 71, 0.7), rgba(0, 0, 0, 0.7)); */
+      font: size 1.4rem;;
+      margin-left: 40px;
+      border-top-right-radius:10px;
+      border-bottom-left-radius:10px;
+      transition:all 1s;
+      color: white;
+    &:after,&:before{
+        content:" ";
+        width:10px;
+        height:10px;
+        position:absolute;
+        border :0px solid #fdfdfd;
+        transition:all 1s;
+        }
+      &:after{
+        top:-1px;
+        left:-1px;
+        border-top:5px solid rgb(251, 251, 251);
+        border-left:5px solid rgb(255, 255, 255);
+      }
+      &:before{
+        bottom:-1px;
+        right:-1px;
+        border-bottom:5px solid rgb(255, 255, 255);
+        border-right:5px solid rgb(252, 252, 252);
+      }
+      &:hover{
+        border-top-right-radius:0px;
+      border-bottom-left-radius:0px;
+        /* //background:rgba(0,0,0,.5); */
+        /* // color:white; */
+        &:before,&:after{
+          
+          width:100%;
+          height:100%;
+          /* // border-color:white; */
+        }
+      }
+    }
+
+
+header nav .menu li a:hover 
+{
+    color: #fa6c6d;
+}
+
+header nav #toggle
+{
+    font-size: 1.3rem;
+    margin-left: 80px;
+    cursor: pointer;
+
+}
+
+    
+    
+    /* ////////////////////////////////////////////////////////////// */
+    .minerals {
+            text-align: center;
+            background-color: #ecf0f1;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 500px;
+            margin: 20px auto;
+            transition: transform 0.3s ease;
+            /* height: 100vh; */
+            
+        }
+
+        .minerals:hover {
+            transform: scale(1.02);
+        }
+
+        h1 {
+            color: #3498db;
+            font-weight: 800;
+            margin-bottom: 20px;
+        }
+
+        form {
+            text-align: center;
+        }
+
+        .districtselect,
+        .cropselect {
+            margin-bottom: 20px;
+        }
+
+        label {
+            color: #333;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 8px;
+        }
+
+        select {
+            width: calc(100% - 16px);
+            padding: 12px;
+            border: 1px solid #bdc3c7;
+            border-radius: 4px;
+            margin-bottom: 20px;
+            box-sizing: border-box;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+        }
+
+        select:focus {
+            border-color: #3498db;
+        }
+
+        input[type="submit"] {
+            background-color: #3498db;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #2980b9;
+        }
+    
+    
+    /* the animation time  */
+    
+    
+    /* Add this to your existing CSS */
+    
+    /* Add this to your existing CSS */
+    
+    
+    
+    </style> 
+</head>
+<body>
+    <header>
+        <div class="logo">
+           
+        </div>
+        <nav>
+            <ul class="menu">
+                <li class="active"><a href="{{url_for('index')}}">Home</a></li>
+                <li><a href="{{ url_for('About') }}">About</a></li>
+                <li><a href="{{ url_for('user_input') }}">Predict crop</a></li>
+                <li><a href="{{ url_for('minerals') }}">Predict Minerals</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+
+            </ul>
+            <i class="fa-solid fa-bars" id="toggle"></i>
+        </nav>
+    </header>
+    <div class="minerals">
+        <h1>Fertilizer Prediction</h1>
+    <form action="/getminerals" method="post">
+        <div class="districtseelct">
+
+            <label for="district">Choose District:</label>
+            <select name="district" id="district">
+                <option value="Solapur">Solapur</option>
+                <option value="Kolhapur">Kolhapur</option>
+                <option value="Pune">Pune</option>
+                <option value="Satara">Satara</option>
+                <option value="Latur">Latur</option>
+            </select><br>
+
+        </div>
+        
+        
+
+        <div class="cropselect">
+            <label for="crop">Choose Crop:</label>
+            <select name="crop" id="crop">
+                <option value="Sugarcane">Sugarcane</option>
+                <option value="Jowar">Jowar</option>
+                <option value="Cotton">Cotton</option>
+                <option value="Rice">Rice</option>
+                <option value="Wheat">Wheat</option>
+                <option value="Groundnut">Groundnut</option>
+                <option value="Maize">Maize</option>
+                <option value="Tur">Tur</option>
+                <option value="Moong">Moong</option>
+                <option value="Soybean">Soybean</option>
+                <option value="Gram">Gram</option>
+                <option value="Ginger">Ginger</option>
+                <option value="Turmeric">Turmeric</option>
+                <option value="Grapes">Grapes</option>
+            </select><br>
+
+        </div>
+
+
+        <input type="submit" value="Predict">
+    </form>
+    </div>
+    
+</body>
+</html>

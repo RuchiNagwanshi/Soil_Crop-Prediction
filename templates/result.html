@@ -1,0 +1,505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Page</title>
+    <!-- Add any additional styles or scripts here -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;&display=swap');
+    
+    *{
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+       list-style: none;
+       text-decoration: none;
+       font-family: "Poppins",sans-serif;
+    }
+    
+    
+    header
+{
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    width: 100%;
+    height: 110px;
+    padding: 0 5%;
+    /* color: #000000; */
+    /* background: rgb(64, 62, 62); */
+    font-size: 18px;
+}
+
+header .logo
+{
+    color: #ffffff;
+    font-size: 2.5rem;
+    text-decoration: uppercase;
+    font-weight: 700;
+    margin-right: auto;
+}
+
+header nav
+{
+    display: flex;
+    align-items: center;
+}
+header nav .menu
+{
+    display: flex;
+    align-items: center;
+}
+
+
+header nav .menu li a{
+    cursor:pointer;
+      position:relative;
+      padding:10px 20px;
+      /* background-image:linear-gradient(rgba(0  , 0, 71, 0.7), rgba(0, 0, 0, 0.7)); */
+      font: size 1.4rem;;
+      margin-left: 40px;
+      border-top-right-radius:10px;
+      border-bottom-left-radius:10px;
+      transition:all 1s;
+      color: white;
+    &:after,&:before{
+        content:" ";
+        width:10px;
+        height:10px;
+        position:absolute;
+        border :0px solid #fdfdfd;
+        transition:all 1s;
+        }
+      &:after{
+        top:-1px;
+        left:-1px;
+        border-top:5px solid rgb(251, 251, 251);
+        border-left:5px solid rgb(255, 255, 255);
+      }
+      &:before{
+        bottom:-1px;
+        right:-1px;
+        border-bottom:5px solid rgb(255, 255, 255);
+        border-right:5px solid rgb(252, 252, 252);
+      }
+      &:hover{
+        border-top-right-radius:0px;
+      border-bottom-left-radius:0px;
+        /* //background:rgba(0,0,0,.5); */
+        /* // color:white; */
+        &:before,&:after{
+          
+          width:100%;
+          height:100%;
+          /* // border-color:white; */
+        }
+      }
+    }
+
+header nav .menu li a:hover 
+{
+    color: #fa6c6d;
+}
+
+header nav #toggle
+{
+    font-size: 1.3rem;
+    margin-left: 80px;
+    cursor: pointer;
+
+}
+    
+    *{
+       margin: 0;
+       padding: 0;
+    }
+    /* ////////////////////////////////////////////////////////////// */
+    /* Add this CSS to your existing stylesheet or create a new one */
+
+/* Add this CSS to your existing stylesheet or create a new one */
+
+
+
+.result {
+    max-width: 600px;
+    margin: 20px auto;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 0 20px rgba(107, 85, 208, 0.845);
+    transition: transform 0.3s ease; /* Add a subtle transition effect */
+}
+
+.result:hover {
+    transform: scale(1.02); /* Enlarge the result box on hover */
+    box-shadow: 0 0 100px rgba(107, 85, 208, 0.845);
+}
+
+h1 {
+    color: #3498db;
+    font-size: 28px;
+    margin-bottom: 20px;
+}
+
+p {
+    margin: 10px 0;
+    font-size: 18px;
+    color: #2c3e50;
+}
+
+strong {
+    font-weight: bold;
+    color: #e74c3c; /* Red color for strong elements */
+}
+
+h2 {
+    color: #27ae60; /* Green color for h2 elements */
+    font-size: 24px;
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+/* Additional styling for predictions */
+.predictions {
+    margin-top: 10px;
+}
+
+.predictions p {
+    margin: 5px 0;
+}
+
+/* Add any additional styling or animations as needed */
+
+/* Add any additional styling or animations as needed */
+/* Button styles */
+#downloadButton {
+    background-color: #3498db;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+    margin-top: 20px;
+}
+
+#downloadButton:hover {
+    background-color: #2980b9;
+}
+
+/* Table styling */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #f2f2f2;
+}
+
+/* Loader styling */
+#loader-container {
+    width: 60%;
+    height: 20px;
+    background-color: rgba(52, 152, 219, 0.2);
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    display: none; /* Initially hide the loader */
+}
+
+#loader-bar {
+    height: 100%;
+    width: 0;
+    background-color: #3498db;
+    transition: width 1s ease; /* Smooth width transition for loading effect */
+}
+
+#loading-text {
+    position: absolute;
+    top: 40px;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #3498db;
+    font-size: 16px;
+}
+
+body{
+  /* background-image:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/static/images/mainbgimage.png); */
+  /* background-image: url(/static/images/mainbgimage.png); */
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  overflow: hidden;
+  font-family: 'Arial', sans-serif;
+  margin: 0; /* Remove default margin */
+}
+
+.main{
+    /* background-image: url(/static/images/mainbgimage.png); */
+    background-image:linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url(/static/images/mainbgimage.png);
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    width: 100%;
+    height: 100vh; /* Adjust height to cover entire viewport */
+    padding: 0;
+    margin: 0;
+}
+
+    </style> 
+</head>
+<body class="loading"> <!-- Add 'loading' class to body -->
+
+<div id="loader-container">
+    <div id="loader-bar"></div>
+    <div id="loading-text">Loading...</div>
+</div>
+
+<div class="main">
+    <header>
+        <div class="logo">
+           
+        </div>
+        <nav>
+            <ul class="menu">
+                <li class="active"><a href="{{url_for('index')}}">Home</a></li>
+                <li><a href="{{ url_for('About') }}">About</a></li>
+                <li><a href="{{ url_for('user_input') }}">Predict crop</a></li>
+                <li><a href="{{ url_for('minerals') }}">Predict Minerals</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+            </ul>
+            <i class="fa-solid fa-bars" id="toggle"></i>
+        </nav>
+    </header>
+    <div class="result" id="resultContainer">
+        <h1>Result Our model have generated</h1>
+        <table>
+            <tr>
+                <td><strong>Nitrogen:</strong></td>
+                <td>{{ Nitrogen }}</td>
+            </tr>
+            <tr>
+                <td><strong>Phosphorus:</strong></td>
+                <td>{{ Phosphorus }}</td>
+            </tr>
+            <tr>
+                <td><strong>Potassium:</strong></td>
+                <td>{{ Potassium }}</td>
+            </tr>
+            <tr>
+                <td><strong>pH:</strong></td>
+                <td>{{ pH }}</td>
+            </tr>
+            <tr>
+                <td><strong>Rainfall:</strong></td>
+                <td>{{ Rainfall }}</td>
+            </tr>
+            <tr>
+                <td><strong>Temperature:</strong></td>
+                <td>{{ Temperature }}</td>
+            </tr>
+            <tr>
+                <td colspan="2"><h2>Predictions:</h2></td>
+            </tr>
+            <tr>
+                <td><strong>Crop Prediction:</strong></td>
+                <td>
+                    <ol>
+                        <li>1. {{ top_crop1 }}</li>
+                        <li>2. {{ top_crop2 }}</li>
+                    </ol>
+                    
+                </td>
+                    
+               
+            </tr>
+            <tr>
+                <td><strong>Fertilizer Prediction:</strong></td>
+                <td>{{ fertilizer_prediction }}</td>
+            </tr>
+        </table>
+        <button id="downloadButton">Download Prediction</button>
+    </div>
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        document.getElementById("downloadButton").addEventListener("click", function () {
+            downloadPage();
+        });
+
+        function downloadPage() {
+    // Remove event listener for download button
+    const downloadButton = document.getElementById("downloadButton");
+    downloadButton.removeEventListener("click", downloadPage);
+    
+    const resultContainer = document.querySelector('.result');
+
+    // Create page content
+    const pageContent = `
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Downloaded Result Page</title>
+            <link rel="stylesheet" href="styles.css"> <!-- Replace with your actual stylesheet -->
+            <style>
+                body {
+                    font-family: 'Arial', sans-serif;
+                    background-color: #f5f5f5;
+                    padding: 20px;
+                }
+                .container {
+                    max-width: 800px;
+                    margin: 0 auto;
+                    background-color: #fff;
+                    padding: 20px;
+                    border-radius: 8px;
+                    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+                }
+                h1 {
+                    color: #3498db;
+                    font-size: 32px;
+                    margin-bottom: 20px;
+                    text-align: center;
+                }
+                p {
+                    font-size: 18px;
+                    line-height: 1.6;
+                    margin-bottom: 15px;
+                }
+                table {
+                    width: 100%;
+                    border-collapse: collapse;
+                    margin-top: 20px;
+                }
+                table, th, td {
+                    border: 1px solid #ddd;
+                }
+                th, td {
+                    padding: 10px;
+                    text-align: left;
+                }
+                th {
+                    background-color: #f2f2f2;
+                }
+            </style>
+        </head>
+        <body>
+            <div class="container">
+                <h1>Downloaded Result</h1>
+                <p>Here are the prediction results:</p>
+                
+                <p>Thank you for using our service!</p>
+                <table>
+                    <tr>
+                        <th>Nitrogen</th>
+                        <td>{{ Nitrogen }}</td>
+                    </tr>
+                    <tr>
+                        <th>Phosphorus</th>
+                        <td>{{ Phosphorus }}</td>
+                    </tr>
+                    <tr>
+                        <th>Potassium</th>
+                        <td>{{ Potassium }}</td>
+                    </tr>
+                    <tr>
+                        <th>pH</th>
+                        <td>{{ pH }}</td>
+                    </tr>
+                    <tr>
+                        <th>Rainfall</th>
+                        <td>{{ Rainfall }}</td>
+                    </tr>
+                    <tr>
+                        <th>Temperature</th>
+                        <td>{{ Temperature }}</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">Predictions</th>
+                    </tr>
+                    <tr>
+                        <th>Crop Prediction</th>
+                        <td>
+                            <ol>
+                                <li>{{ top_crop1 }}</li>
+                                <li>{{ top_crop2 }}</li>
+                            </ol>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Fertilizer Prediction</th>
+                        <td>{{ fertilizer_prediction }}</td>
+                    </tr>
+                </table>
+            </div>
+        </body>
+        </html>
+    `;
+
+    const blob = new Blob([pageContent], { type: 'text/html' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'Crop_prediction.html';
+    link.click();
+}
+
+
+    });
+
+    document.addEventListener("DOMContentLoaded", function () {
+        const loaderContainer = document.getElementById("loader-container");
+        const loaderBar = document.getElementById("loader-bar");
+        const loadingText = document.getElementById("loading-text");
+        const resultContainer = document.getElementById("resultContainer");
+
+        function showLoader() {
+            loaderContainer.style.display = "flex";
+            resultContainer.style.display = "none";
+            loaderBar.style.width = "0"; // Reset the width for each loading event
+            document.body.classList.add('loading'); // Add red background to body
+        }
+
+        function hideLoader() {
+            loaderContainer.style.display = "none";
+            resultContainer.style.display = "block";
+            document.body.classList.remove('loading'); // Remove red background from body
+        }
+
+         
+        // Simulate loading progress (replace this with your actual loading logic)
+        let progress = 0;
+        const loadingInterval = setInterval(function () {
+            progress += 10;
+            loaderBar.style.width = progress + "%";
+            loadingText.textContent = `Loading... ${progress}%`;
+
+            if (progress >= 100) {
+                clearInterval(loadingInterval);
+                hideLoader(); // Hide loader after loading completion
+            }
+        }, 200);
+
+        showLoader(); // Display loader initially
+    });
+</script>
+
+</body>
+</html>

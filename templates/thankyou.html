@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Result Page</title>
+    <!-- Add any additional styles or scripts here -->
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900;&display=swap');
+    
+    *{
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+       list-style: none;
+       text-decoration: none;
+       font-family: "Poppins",sans-serif;
+    }
+    
+    
+    
+    header
+    {
+       display: flex;
+       align-items: center;
+       justify-content: flex-end;
+       width: 100%;
+       height: 110px;
+       padding: 0 5%;
+       /* color: #fff;
+        */
+        background-color: rgb(64, 62, 62);
+       font-size: 18px;
+    }
+    
+    header .logo
+    {
+       color: #fff;
+       font-size: 2.5rem;
+       text-decoration: uppercase;
+       font-weight: 700;
+       margin-right: auto;
+    }
+    
+    header nav
+    {
+       display: flex;
+       align-items: center;
+    }
+    header nav .menu
+    {
+       display: flex;
+       align-items: center;
+    }
+    
+   
+header nav .menu li a{
+    cursor:pointer;
+      position:relative;
+      padding:10px 20px;
+      /* background-image:linear-gradient(rgba(0  , 0, 71, 0.7), rgba(0, 0, 0, 0.7)); */
+      font: size 1.4rem;;
+      margin-left: 40px;
+      border-top-right-radius:10px;
+      border-bottom-left-radius:10px;
+      transition:all 1s;
+      color: white;
+    &:after,&:before{
+        content:" ";
+        width:10px;
+        height:10px;
+        position:absolute;
+        border :0px solid #fdfdfd;
+        transition:all 1s;
+        }
+      &:after{
+        top:-1px;
+        left:-1px;
+        border-top:5px solid rgb(251, 251, 251);
+        border-left:5px solid rgb(255, 255, 255);
+      }
+      &:before{
+        bottom:-1px;
+        right:-1px;
+        border-bottom:5px solid rgb(255, 255, 255);
+        border-right:5px solid rgb(252, 252, 252);
+      }
+      &:hover{
+        border-top-right-radius:0px;
+      border-bottom-left-radius:0px;
+        /* //background:rgba(0,0,0,.5); */
+        /* // color:white; */
+        &:before,&:after{
+          
+          width:100%;
+          height:100%;
+          /* // border-color:white; */
+        }
+      }
+    }
+
+    
+    header nav .menu li a:hover 
+    {
+       color: #fa6c6d;
+    }
+    
+    header nav #toggle
+    {
+       font-size: 1.3rem;
+       margin-left: 80px;
+       cursor: pointer;
+    
+    }
+    
+    
+    *{
+       margin: 0;
+       padding: 0;
+    }
+    /* ////////////////////////////////////////////////////////////// */
+    /* Add this CSS to your existing stylesheet or create a new one */
+
+/* Add this CSS to your existing stylesheet or create a new one */
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+
+.container {
+    max-width: 600px;
+    margin: 50px auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    color: #007bff;
+}
+
+p {
+    font-size: 18px;
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+
+</style> 
+</head>
+<body>
+    <!-- Add this HTML before the existing content -->
+
+    <!-- <div id="loader-container">
+        <div id="loader-bar"></div>
+        <div id="loading-text">Loading...</div>
+    </div> -->
+
+
+    <header>
+        <div class="logo">
+           
+        </div>
+        <nav>
+            <ul class="menu">
+                <li class="active"><a href="{{url_for('index')}}">Home</a></li>
+                <li><a href="{{ url_for('About') }}">About</a></li>
+                <li><a href="{{ url_for('user_input') }}">Predict crop</a></li>
+                <li><a href="{{ url_for('minerals') }}">Predict Minerals</a></li>
+                <li><a href="{{ url_for('contact') }}">Contact</a></li>
+
+            </ul>
+            <i class="fa-solid fa-bars" id="toggle"></i>
+        </nav>
+    </header>
+    
+    <!-- Add any additional content or styling here -->
+
+    <div class="container">
+        <h1>Thank You!</h1>
+        <p>Your message has been received. We'll get back to you soon.</p>
+        <p><a href="{{ url_for('index') }}">Go back to the homepage</a></p>
+    </div>
+        
+    
+
+        
+
+    
+<!-- Add this JavaScript after the existing content -->
+
+
+
+</body>
+</html>
